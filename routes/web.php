@@ -19,3 +19,6 @@ Route::get('/', function () {
 });
 
 Route::get('/generate-pdf', [PdfController::class,'generatePdf']);
+Route::get("hello",function(){
+    dd("ds");
+});
