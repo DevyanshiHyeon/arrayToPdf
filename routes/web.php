@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\MainController;
+use App\Http\Controllers\DataController;
+use App\Http\Controllers\SpatieController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PdfController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,10 +17,17 @@ use App\Http\Controllers\PdfController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome1');
+    // return view('layout.dashboard');
 });
+Route::get('command', function () {
+    \Artisan::call('optimize:clear');
+    return ("Done");
+});
+Route::post('form-submit',[MainController::class,'store'])->name('filter.excel');
 
-Route::get('/generate-pdf', [PdfController::class,'generatePdf']);
-Route::get("hello",function(){
-    dd("ds");
-});
+Route::get('GnhYuS/WFgVLd/upload-excel',[DataController::class,'index']);
+Route::post('merge-data',[DataController::class,'merge_data']);
+
+// Route::get('spatie-upload',[SpatieController::class,'index']);
+// Route::post('spatie-table',[SpatieController::class,'table']);
